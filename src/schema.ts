@@ -13,7 +13,7 @@ export const TAB_DEFINITIONS: TabDefinition[] = [
 	{ id: 'presets', label: 'Presets', icon: 'sparkles', description: 'Curated themes and saved styles for light and dark mode' },
 	{ id: 'typography', label: 'Typography', icon: 'type', description: 'Fonts, heading scale, line height, paragraph rhythm' },
 	{ id: 'colors', label: 'Colors', icon: 'palette', description: 'Base colors, heading text, component & markdown styling, editor styling, navigation tree, tables, scrollbars' },
-	{ id: 'elements', label: 'UI Elements', icon: 'layout-grid', description: 'Adjust opacity of UI chrome down to zero for minimalist layouts, frosted glass, and feature enhancements' },
+	{ id: 'elements', label: 'UI Elements', icon: 'layout-grid', description: 'Adjust opacity of UI elements down to zero for minimalist layouts, frosted glass, and feature enhancements' },
 	{ id: 'shadows', label: 'Shadows & Outlines', icon: 'layers', description: 'Drop shadows, neon glows, animated outlines' },
 ];
 
@@ -2616,7 +2616,7 @@ input[type="checkbox"].task-list-item-checkbox:checked::after,
 }`,
 	},
 
-	// --- Tabs & Navigation Chrome ---
+	// --- Tabs & Navigation ---
 	{
 		id: 'tab-bg-active',
 		label: 'Active Tab Background',
@@ -4053,7 +4053,7 @@ samp,
 		step: 0.5,
 		unit: 'px',
 		// Rewrite the interface size tokens instead of slamming `font-size` on
-		// `body`. Obsidian's chrome already consumes these tokens, so the change
+		// `body`. Obsidian's UI already consumes these tokens, so the change
 		// composes with themes and never cascades into note content, which keeps
 		// its own --font-text-size.
 		companionCss: `
@@ -4772,7 +4772,7 @@ body:not(.is-translucent).theme-light .menu, body:not(.is-translucent).theme-lig
   border-radius: var(--menu-radius) !important;
 }`,
 	},
-	// --- Tabs & Navigation Chrome ---
+	// --- Tabs & Navigation ---
 	{
 		id: 'tab-curve',
 		label: 'Tab Bottom Slope Curve Radius',
@@ -5394,7 +5394,7 @@ export interface UIElementConfig {
 	label: string;
 	description?: string;
 	selector: string;
-	category: 'borders' | 'navigation' | 'chrome' | 'editor';
+	category: 'borders' | 'navigation' | 'window' | 'editor';
 	icon: string;
 	defaultOpacityDark: string;
 	defaultOpacityLight: string;
@@ -5546,12 +5546,12 @@ export const UI_ELEMENTS: UIElementConfig[] = [
 		supportsHoverReveal: true,
 	},
 
-	// --- 3. WINDOW & WORKSPACE CHROME ---
+	// --- 3. WINDOW & WORKSPACE ELEMENTS ---
 	{
 		id: 'titlebar',
 		label: 'Window Titlebar & Frame',
 		selector: '.titlebar, .titlebar-inner',
-		category: 'chrome',
+		category: 'window',
 		icon: 'app-window',
 		defaultOpacityDark: '1.0',
 		defaultOpacityLight: '1.0',
@@ -5562,7 +5562,7 @@ export const UI_ELEMENTS: UIElementConfig[] = [
 		platformNote: 'Frameless windows only — with the native OS window frame these buttons are drawn by the system and CSS cannot reach them.',
 		label: 'Window Action Controls',
 		selector: '.titlebar-button-container, .titlebar-button, .titlebar-button-container.mod-right',
-		category: 'chrome',
+		category: 'window',
 		icon: 'minimize-2',
 		defaultOpacityDark: '1.0',
 		defaultOpacityLight: '1.0',
@@ -5572,7 +5572,7 @@ export const UI_ELEMENTS: UIElementConfig[] = [
 		id: 'tab-headers',
 		label: 'Tab Headers (Note Tabs)',
 		selector: '.workspace-tab-header-container',
-		category: 'chrome',
+		category: 'window',
 		icon: 'layout',
 		defaultOpacityDark: '1.0',
 		defaultOpacityLight: '1.0',
@@ -5582,7 +5582,7 @@ export const UI_ELEMENTS: UIElementConfig[] = [
 		id: 'view-header',
 		label: 'View Header & Actions Bar',
 		selector: '.view-header',
-		category: 'chrome',
+		category: 'window',
 		icon: 'panel-top',
 		defaultOpacityDark: '1.0',
 		defaultOpacityLight: '1.0',
@@ -5592,7 +5592,7 @@ export const UI_ELEMENTS: UIElementConfig[] = [
 		id: 'status-bar',
 		label: 'Status Bar',
 		selector: '.status-bar',
-		category: 'chrome',
+		category: 'window',
 		icon: 'info',
 		defaultOpacityDark: '1.0',
 		defaultOpacityLight: '1.0',
@@ -5602,7 +5602,7 @@ export const UI_ELEMENTS: UIElementConfig[] = [
 		id: 'scrollbars',
 		label: 'Scrollbars',
 		selector: '::-webkit-scrollbar, .cm-scroller::-webkit-scrollbar, *::-webkit-scrollbar-thumb, *::-webkit-scrollbar-track',
-		category: 'chrome',
+		category: 'window',
 		icon: 'sliders-vertical',
 		defaultOpacityDark: '1.0',
 		defaultOpacityLight: '1.0',

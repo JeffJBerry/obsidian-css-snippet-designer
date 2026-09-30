@@ -1,7 +1,7 @@
 {
   "name": "css-snippet-designer",
   "version": "1.0.0",
-  "description": "Visual CSS Snippet Designer for Obsidian.",
+  "description": "Design CSS snippets visually for Obsidian: typography, colors, shadows and UI elements.",
   "main": "main.js",
   "type": "module",
   "scripts": {
@@ -24,11 +24,21 @@
     "css",
     "snippets"
   ],
-  "author": "Jeffrey Berry",
+  "author": {
+    "name": "Jeffrey Berry",
+    "url": "https://github.com/JeffJBerry"
+  },
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JeffJBerry/obsidian-css-snippet-designer.git"
+  },
+  "homepage": "https://github.com/JeffJBerry/obsidian-css-snippet-designer#readme",
+  "bugs": {
+    "url": "https://github.com/JeffJBerry/obsidian-css-snippet-designer/issues"
+  },
+  "engines": {
+    "node": ">=20"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.4",

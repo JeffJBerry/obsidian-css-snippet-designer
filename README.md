@@ -2,7 +2,7 @@
 
 ![CSS Snippet Designer demo](assets/demo.gif)
 
-A visual styling studio for [Obsidian](https://obsidian.md). Tune typography, colors, shadows, backgrounds and UI chrome with live controls, then save the result as a standard CSS snippet.
+A visual styling studio for [Obsidian](https://obsidian.md). Tune typography, colors, shadows, backgrounds and UI elements with live controls, then save the result as a standard CSS snippet.
 
 > **Desktop only** — requires Obsidian 1.7.2 or newer.
 
@@ -53,6 +53,10 @@ npm run build    # production bundle
 ```
 
 Pure TypeScript with no runtime dependencies. All CSS is produced by pure generator functions and validated before it reaches disk. The suite covers 288 tests running on Node's built-in test runner.
+
+## AI disclosure
+
+This plugin was developed with the assistance of AI coding tools. All code is reviewed, tested, and maintained by [Jeffrey Berry](https://github.com/JeffJBerry). AI can make mistakes — if you find one, please [open an issue](https://github.com/JeffJBerry/obsidian-css-snippet-designer/issues).
 
 ## License
 

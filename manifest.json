@@ -3,7 +3,7 @@
   "name": "CSS Snippet Designer",
   "version": "1.0.0",
   "minAppVersion": "1.7.2",
-  "description": "Visual CSS snippet designer for typography, colours, shadows and UI chrome.",
+  "description": "Design CSS snippets visually for typography, colors, shadows and UI elements.",
   "author": "Jeffrey Berry",
   "authorUrl": "https://github.com/JeffJBerry",
   "isDesktopOnly": true

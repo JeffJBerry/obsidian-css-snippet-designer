@@ -7,7 +7,7 @@ import type { ThemeTokenState } from '../src/css/ui-elements';
 
 /**
  * "UI Font Size" in Typography > Font Families & Base Scale: scales the
- * interface chrome text (sidebars, tabs, ribbons, menus, status bar) by
+ * interface UI text (sidebars, tabs, ribbons, menus, status bar) by
  * rewriting Obsidian's interface size tokens, rather than note content which
  * "Base Font Size" (--font-text-size) already covers.
  */
@@ -67,7 +67,7 @@ test('companionCss rebinds Obsidian interface size tokens instead of font-size',
 	assert.ok(ctrl.companionCss, 'must define companionCss');
 	assertValid(ctrl.companionCss!, 'font-interface-size companionCss');
 
-	// The tokens Obsidian's chrome actually consumes.
+	// The tokens Obsidian's UI actually consumes.
 	assert.ok(
 		ctrl.companionCss!.includes('--font-ui-small: var(--font-ui-size, 13px) !important;'),
 		'must drive --font-ui-small from --font-ui-size',

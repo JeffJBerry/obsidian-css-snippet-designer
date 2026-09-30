@@ -2505,7 +2505,7 @@ export class CssDesignerPopoutView extends ItemView {
 				this.engine.setToken(mode, ctrl.variable, defaultVal);
 			}
 		}
-		// Secondary Accent must remain disabled on default reset so Obsidian stock chrome/icons are not overridden
+		// Secondary Accent must remain disabled on default reset so Obsidian stock UI/icons are not overridden
 		enabledMap.set('--text-accent-2', false);
 		tokenMap.set('--h1-border-padding', '0px');
 		enabledMap.set('--h1-border-padding', true);

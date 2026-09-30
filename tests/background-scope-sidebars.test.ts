@@ -9,7 +9,7 @@ import { validateCss, formatIssues } from '../src/engine';
  * "Side Panels Only" (--ui-bg-scope: 'sidebars') is a third Custom Background
  * scope, alongside 'editor' and 'workspace': the pattern paints the left/right
  * sidebars (file explorer, search, backlinks, etc. and their drawer/ribbon
- * equivalents) while the main note editor and floating chrome (menus,
+ * equivalents) while the main note editor and floating UI (menus,
  * popovers, the settings modal) are left solid, exactly as if the feature
  * were off there.
  */

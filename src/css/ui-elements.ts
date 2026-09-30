@@ -1,5 +1,5 @@
 /**
- * Generators for UI chrome opacity and custom background CSS.
+ * Generators for UI element opacity and custom background CSS.
  *
  * These take an explicit `ThemeTokenState` rather than the view, so they stay
  * unit-testable without constructing an Obsidian workspace.
@@ -585,12 +585,12 @@ function generateBackgroundPass(
 		? selectors.split(',\n').filter((entry) => !glassNestedLayers.has(entry.trim())).join(',\n')
 		: selectors;
 
-	// Shared "keep it solid, no pattern" chrome protection for menus, popovers,
+	// Shared "keep it solid, no pattern" element protection for menus, popovers,
 	// dropdowns, and the settings modal - identical whether the pattern itself
 	// is confined to the editor or to the side panels, since in both cases
-	// this floating chrome should never show it.
+	// this floating UI should never show it.
 	/**
-	 * What floating chrome needs when the pattern is confined to the editor or
+	 * What floating UI needs when the pattern is confined to the editor or
 	 * to the side panels.
 	 *
 	 * Obsidian renders menus, popovers, prompts and modals at the top of the
@@ -602,8 +602,8 @@ function generateBackgroundPass(
 	 * block is still used by the workspace scope, which deliberately paints the
 	 * pattern onto menus and therefore needs the sub-menu and control exceptions.
 	 */
-	const floatingChromeNoPattern =
-		`/* Floating chrome never shows the pattern, and stays above the painted layers */\n` +
+	const floatingElementsNoPattern =
+		`/* Floating UI never shows the pattern, and stays above the painted layers */\n` +
 		`${mode} .menu,\n` +
 		`${mode} .suggestion-container,\n` +
 		`${mode} .popover,\n` +
@@ -643,7 +643,7 @@ function generateBackgroundPass(
 		`  -webkit-mask-image: none !important;\n` +
 		`}\n`;
 
-	const chromeProtectionNoPattern =
+	const elementsProtectionNoPattern =
 		`/* Menus and overlays keep solid background without pattern */\n` +
 		`${mode} .menu,\n` +
 		`${mode} .suggestion-container,\n` +
@@ -1023,9 +1023,9 @@ function generateBackgroundPass(
 			`  background-color: transparent !important;\n` +
 			`  background-image: none !important;\n` +
 			`}\n`;
-		navigationAndMenuProtection += floatingChromeNoPattern;
+		navigationAndMenuProtection += floatingElementsNoPattern;
 	} else {
-		// Kept. Unlike the floating-chrome block, this one carries
+		// Kept. Unlike the floating-UI block, this one carries
 		// `body:not(.is-focused)` variants of every selector, which is the
 		// signature of a real focus-state bug rather than defensive copying -
 		// Obsidian repaints these surfaces when the window loses focus. Verifying
@@ -1079,7 +1079,7 @@ function generateBackgroundPass(
 				`  background-image: none !important;\n` +
 				`}\n`;
 		}
-		navigationAndMenuProtection += floatingChromeNoPattern;
+		navigationAndMenuProtection += floatingElementsNoPattern;
 	}
 
 	const suppressedSplitBefore: string[] = [];
@@ -1220,7 +1220,7 @@ function generateBackgroundPass(
 		`${mode} .workspace-leaf-content[data-type="css-snippet-designer-view"]::before {\n` +
 		`  display: none !important;\n` +
 		`}\n` +
-		`/* Chrome header, tabs, and status bar protection */\n` +
+		`/* Header, tabs, and status bar protection */\n` +
 		`${mode} .workspace-tab-header-container,\n` +
 		`${mode} .workspace-tab-header,\n` +
 		`${mode} .workspace-tab-header-inner,\n` +
@@ -1587,19 +1587,19 @@ function generateBackgroundPass(
 		// `isolation` makes the app root a stacking context so the backdrop can
 		// sit at a NEGATIVE z-index: above the app's own background, but behind
 		// every pane, titlebar and control. Nothing in the workspace is covered
-		// or re-stacked, and no chrome has to be raised - only the panes are
+		// or re-stacked, and no UI has to be raised - only the panes are
 		// made transparent so the backdrop shows through.
 		css += `${mode} .app-container {\n  position: relative !important;\n  isolation: isolate !important;\n}\n`;
 		css += `${mode} .horizontal-main-container,\n${mode} .workspace {\n  background-color: transparent !important;\n}\n`;
 		css += `${backdropPane} {\n  background-color: transparent !important;\n  background-image: none !important;\n}\n`;
-		css += chromeProtectionNoPattern;
+		css += elementsProtectionNoPattern;
 		css += sharedProtection;
 
 		// The window drag region is a *transparent* titlebar layered over the tab
 		// strip, so an opaque titlebar would hide the tab strip, sidebar toggles
 		// and window controls drawn in it. Keep the titlebar transparent and make
 		// the tab header container opaque instead (as the glass layer does): the
-		// backdrop is hidden there while the chrome stays visible through the
+		// backdrop is hidden there while the UI stays visible through the
 		// titlebar.
 		css += `/* Full Workspace: solid tab bar over the backdrop */\n`;
 		css += `${mode} .workspace-tab-header-container {\n  background-color: var(--tab-container-background, var(--background-secondary, ${bgFallback})) !important;\n}\n`;

@@ -1491,9 +1491,9 @@ export function renderElementsTab(view: CssDesignerPopoutView, container: HTMLEl
 			icon: 'compass',
 		},
 		{
-			id: 'chrome',
-			label: 'Window Chrome',
-			title: 'Window & Workspace Chrome',
+			id: 'window',
+			label: 'Window elements',
+			title: 'Window & workspace elements',
 			icon: 'app-window',
 		},
 		{
@@ -1504,7 +1504,7 @@ export function renderElementsTab(view: CssDesignerPopoutView, container: HTMLEl
 		},
 	];
 
-	const renderCategoryGroup = (catId: 'borders' | 'navigation' | 'chrome' | 'editor') => {
+	const renderCategoryGroup = (catId: 'borders' | 'navigation' | 'window' | 'editor') => {
 		const catMeta = UI_CATEGORIES.find((c) => c.id === catId);
 		if (!catMeta) return;
 
@@ -1728,7 +1728,7 @@ export function renderElementsTab(view: CssDesignerPopoutView, container: HTMLEl
 
 	renderCategoryGroup('borders');
 	renderCategoryGroup('navigation');
-	renderCategoryGroup('chrome');
+	renderCategoryGroup('window');
 	renderCategoryGroup('editor');
 }
 

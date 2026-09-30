@@ -495,7 +495,7 @@ test('enabling animations protects menus, dropdowns, and menu items from transpa
 	// colour - verified in Chromium against an Obsidian-shaped DOM: with that
 	// declaration gone the menus keep `--menu-background` from Obsidian itself,
 	// and nothing gains the pattern. What the plugin still has to say is that
-	// the pattern stops at floating chrome and that chrome stays on top of the
+	// the pattern stops at floating UI and that UI stays on top of the
 	// painted, isolated leaves.
 	assert.match(animatedCss, /\.menu[^{]*\{[^}]*background-image: none !important;/);
 	assert.match(animatedCss, /\.menu[^{]*\{[^}]*z-index: 1000 !important;/);
@@ -543,7 +543,7 @@ test('workspace scope paints one fixed backdrop across the whole window', () => 
 	assert.match(workspaceCss, /\.workspace-tab-header/);
 	assert.match(workspaceCss, /\.canvas-node-container/);
 
-	// Overlay chrome stays solid instead of duplicating the pattern.
+	// Overlay elements stay solid instead of duplicating the pattern.
 	assert.match(workspaceCss, /\.menu[\s\S]*background-image: none !important;/);
 
 	// Foreground items stay elevated
@@ -638,7 +638,7 @@ test('sub-menus, dropdown buttons, and settings menus never render custom backgr
 			// `.modal-container .menu` and `.canvas-wrapper .menu` only ever appeared
 			// in the pseudo-element suppression list, which a static pattern no
 			// longer emits because it creates no ::before layer to suppress. What
-			// the test is really after is that menus and canvas chrome never carry
+			// the test is really after is that menus and canvas UI never carry
 			// the pattern, so it asks the rules that actually do that.
 			assert.match(css, /\.menu[^{]*\{[^}]*background-image: none !important;/);
 			assert.match(css, /\.canvas-(card-menu|node-toolbar|controls)[^{]*\{[^}]*background-image: none !important;/);
@@ -764,7 +764,7 @@ test('workspace backdrop keeps the top bar legible without hiding its icons', ()
 	// the tab strip, so an opaque titlebar would cover those icons.
 	assert.doesNotMatch(css, /\.theme-dark \.titlebar\s*\{[^}]*background-color:/);
 
-	// The pattern layer sits behind the chrome and never intercepts the pointer.
+	// The pattern layer sits behind the UI and never intercepts the pointer.
 	assert.match(css, /\.theme-dark \.app-container::before \{[\s\S]*?pointer-events: none !important;/);
 });
 
@@ -974,7 +974,7 @@ test('dropping the suppression list does not cost a static pattern its protectio
 	assert.match(
 		css,
 		/\.canvas-(card-menu|node-toolbar|controls)[^{]*\{[^}]*background-image: none !important;/,
-		'canvas chrome stays clear of the pattern'
+		'canvas elements stay clear of the pattern'
 	);
 	assert.match(css, /background-image: radial-gradient/, 'and the pattern itself is still painted');
 });
@@ -993,7 +993,7 @@ test('dropping the suppression list does not cost a static pattern its protectio
  * checkbox behind Obsidian's toggle switches hidden - were kept, and are
  * asserted here so they are not lost to a later tidy-up.
  */
-test('the scoped guard keeps what the long chrome block was actually for', () => {
+test('the scoped guard keeps what the long UI block was actually for', () => {
 	for (const scope of ['editor', 'sidebars'] as const) {
 		const css = backgroundCssFor({ '--ui-bg-style': 'dot-grid', '--ui-bg-scope': scope });
 

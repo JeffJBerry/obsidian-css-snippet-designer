@@ -53,6 +53,8 @@ AGENTS.md
 CLAUDE.md
 GEMINI.md
 .github/copilot-instructions.md
+opencode.json
+.opencode/
 
 # Other AI assistant tooling
 .aider*
