@@ -7,8 +7,8 @@ A visual styling studio for [Obsidian](https://obsidian.md). Tune typography, co
 > **Desktop only** — requires Obsidian 1.7.2 or newer.
 
 [![CI](https://github.com/JeffJBerry/obsidian-css-snippet-designer/actions/workflows/lint.yml/badge.svg)](https://github.com/JeffJBerry/obsidian-css-snippet-designer/actions/workflows/lint.yml)
-[![License](https://img.shields.io/github/license/JeffJBerry/obsidian-css-snippet-designer)](https://github.com/JeffJBerry/obsidian-css-snippet-designer/blob/main/LICENSE)
-[![Latest release](https://img.shields.io/github/v/release/JeffJBerry/obsidian-css-snippet-designer)](https://github.com/JeffJBerry/obsidian-css-snippet-designer/releases)
+[![License](https://img.shields.io/github/license/JeffJBerry/obsidian-css-snippet-designer?style=flat)](https://github.com/JeffJBerry/obsidian-css-snippet-designer/blob/main/LICENSE)
+[![Latest release](https://img.shields.io/github/v/release/JeffJBerry/obsidian-css-snippet-designer?style=flat)](https://github.com/JeffJBerry/obsidian-css-snippet-designer/releases)
 
 ## Features
 
