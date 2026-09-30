@@ -56,12 +56,8 @@ Pure TypeScript with no runtime dependencies. All CSS is produced by pure genera
 
 ## AI disclosure
 
-This plugin was developed with the assistance of AI coding tools. All code is reviewed, tested, and maintained by [Jeffrey Berry](https://github.com/JeffJBerry). AI can make mistakes — if you find one, please [open an issue](https://github.com/JeffJBerry/obsidian-css-snippet-designer/issues).
+This plugin was developed with the assistance of AI coding tools. All code is reviewed, tested, and maintained by [Jeffrey Berry](https://github.com/JeffJBerry). AI can make mistakes — if you find one, please [open an issue](https://github.com/JeffJBerry/obsidian-css-snippet-designer/issues). This is my first app, and I'm still learning — thank you for your patience and feedback.
 
 ## License
 
 [MIT](LICENSE)
-
----
-
-Made by [Jeffrey Berry](https://github.com/JeffJBerry). Issues and ideas welcome in the [issue tracker](https://github.com/JeffJBerry/obsidian-css-snippet-designer/issues).
