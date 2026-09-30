@@ -1,0 +1,45 @@
+{
+  "name": "css-snippet-designer",
+  "version": "1.0.0",
+  "description": "Visual CSS Snippet Designer for Obsidian.",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src --cache",
+    "test": "node scripts/test.mjs",
+    "verify:load": "node scripts/smoke-load.mjs",
+    "build:fallback": "node scripts/smoke-load.mjs --emit",
+    "check": "npm run typecheck && npm run lint && npm run test && npm run verify:load",
+    "dev": "node esbuild.config.mjs",
+    "build": "npm run check && node esbuild.config.mjs production",
+    "version": "node version-bump.mjs && git add manifest.json versions.json",
+    "agent:sync": "node .agents/sync.mjs",
+    "agent:index": "node .agents/control-index.mjs",
+    "agent:doctor": "node .agents/doctor.mjs"
+  },
+  "keywords": [
+    "obsidian",
+    "obsidian-plugin",
+    "css",
+    "snippets"
+  ],
+  "author": "Jeffrey Berry",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JeffJBerry/obsidian-css-snippet-designer.git"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.4",
+    "@types/node": "^22.15.17",
+    "esbuild": "0.25.5",
+    "eslint": "^9.39.4",
+    "eslint-plugin-obsidianmd": "^0.4.0",
+    "globals": "^17.6.0",
+    "jiti": "^2.6.1",
+    "obsidian": "latest",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.59.1"
+  }
+}
