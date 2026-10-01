@@ -43,9 +43,10 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               run: |
                   tag="${GITHUB_REF#refs/tags/}"
+                  node scripts/changelog-release-notes.mjs "$tag" > release-notes.md
 
                   gh release create "$tag" \
                     --title="$tag" \
                     --draft \
-                    --generate-notes \
+                    --notes-file release-notes.md \
                     main.js manifest.json ${{ steps.styles.outputs.exists == 'true' && 'styles.css' || '' }}

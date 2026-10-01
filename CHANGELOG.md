@@ -9,20 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- `THIRD-PARTY-NOTICES.md` listing the embedded preview fonts and reproducing their licenses (OFL-1.1, Apache-2.0, UFL-1.0).
+- Settings now appear in Obsidian's settings search on 1.13 and newer.
 
 ### Changed
 
-- Settings now also expose Obsidian's declarative settings API (1.13+), so they appear in settings search; the legacy tab is retained for older versions.
-- Replaced native `document.createElement('style')` with Obsidian's `createEl`, and explicitly typed the Electron `require` lookup, clearing the remaining review warnings.
-- Reduced `!important` in `styles.css`: removed it where the plugin's own scoped selectors already win, keeping it only for Obsidian component/theme overrides and the spellcheck/grammar block.
-- Release notes are now generated automatically by the release workflow.
+- Bundled preview fonts and their licenses are documented in `THIRD-PARTY-NOTICES.md`.
 
 ### Fixed
 
-- Replaced a deprecated DOM query used when hydrating font-picker options.
-- Documented the plugin's clipboard use (the Copy Code button writes to the system clipboard) in the README.
-- Live-preview and preset-swatch styling now uses CSS classes and custom properties instead of inline styles, clearing the `obsidianmd/no-static-styles-assignment` findings from the community plugin review.
+- Addressed issues raised in the community plugin review.
 
 ## [1.0.0] - 2026-09-30
 
