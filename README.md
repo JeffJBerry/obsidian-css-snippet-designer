@@ -1,6 +1,6 @@
 # CSS Snippet Designer
 
-![CSS Snippet Designer demo](assets/demo.gif)
+![CSS Snippet Designer interface](assets/preview.gif)
 
 A visual styling studio for [Obsidian](https://obsidian.md). Tune typography, colors, shadows, backgrounds and UI elements with live controls, then save the result as a standard CSS snippet.
 
@@ -33,9 +33,7 @@ Every control change updates the Obsidian UI instantly and writes the matching p
 
 ## Installation
 
-**Community plugins:** coming soon — the plugin is not yet listed in the Obsidian Community directory.
-
-**Manual install:** copy `main.js`, `manifest.json`, and `styles.css` into `.obsidian/plugins/css-snippet-designer/` inside your vault, then reload Obsidian and enable **CSS Snippet Designer** under **Settings → Community plugins**.
+Copy `main.js`, `manifest.json`, and `styles.css` into `.obsidian/plugins/css-snippet-designer/` inside your vault, then reload Obsidian and enable **CSS Snippet Designer** under **Settings → Community plugins**.
 
 ## Development
 
