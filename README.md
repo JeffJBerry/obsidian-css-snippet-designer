@@ -52,6 +52,10 @@ Pure TypeScript with no runtime dependencies. All CSS is produced by pure genera
 
 This plugin was developed with the assistance of AI coding tools. All code is reviewed, tested, and maintained by [Jeffrey Berry](https://github.com/JeffJBerry). AI can make mistakes — if you find one, please [Open an issue](https://github.com/JeffJBerry/obsidian-css-snippet-designer/issues). This is my first app, and I'm still learning — thank you for your patience and feedback.
 
+## Privacy
+
+This plugin runs entirely offline: it makes no network requests and collects no telemetry. It writes to the system clipboard only when you click **Copy Code**.
+
 ## License
 
 [MIT](LICENSE). Bundled fonts and their licenses are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

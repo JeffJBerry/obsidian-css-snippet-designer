@@ -41,9 +41,7 @@ export function applyProspectiveFontStyles(selectEl: HTMLSelectElement): void {
 	}
 	selectEl.setAttribute('data-fonts-rendered', 'true');
 
-	const options: ArrayLike<HTMLOptionElement> = selectEl.options && selectEl.options.length > 0
-		? selectEl.options
-		: (typeof selectEl.querySelectorAll === 'function' ? selectEl.querySelectorAll<HTMLOptionElement>('option') : []);
+	const options: ArrayLike<HTMLOptionElement> = selectEl.options ?? [];
 
 	for (let i = 0; i < options.length; i++) {
 		const opt = options[i];
