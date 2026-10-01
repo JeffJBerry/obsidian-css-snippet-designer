@@ -60,4 +60,4 @@ This plugin was developed with the assistance of AI coding tools. All code is re
 
 ## License
 
-[MIT](LICENSE)
+[MIT](LICENSE). Bundled fonts and their licenses are listed in [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).

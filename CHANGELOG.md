@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- `THIRD-PARTY-NOTICES.md` listing the embedded preview fonts and reproducing their licenses (OFL-1.1, Apache-2.0, UFL-1.0).
+
 ## [1.0.0] - 2026-09-30
 
 ### Added
