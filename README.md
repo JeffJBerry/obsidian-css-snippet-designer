@@ -39,10 +39,12 @@ Copy `main.js`, `manifest.json`, and `styles.css` into `.obsidian/plugins/css-sn
 
 ```bash
 npm install
-npm run dev      # esbuild watch
-npm run check    # typecheck + lint + tests + smoke load
-npm run build    # production bundle
+npm run dev
+npm run check
+npm run build
 ```
+
+`dev` runs esbuild in watch mode, `check` runs typecheck, lint, tests, and a smoke load, and `build` produces the production bundle.
 
 Pure TypeScript with no runtime dependencies. All CSS is produced by pure generator functions and validated before it reaches disk. The suite covers 288 tests running on Node's built-in test runner.
 
