@@ -566,7 +566,7 @@ export function updateShadowPreview(view: CssDesignerPopoutView, preview: HTMLEl
 		let kfEl = doc.getElementById(`css-designer-preview-kf-${el.id}`) as HTMLStyleElement | null;
 		if (hasAnim && animBlock) {
 			if (!kfEl) {
-				kfEl = doc.createElement('style');
+				kfEl = createEl('style');
 				kfEl.id = `css-designer-preview-kf-${el.id}`;
 				doc.head.appendChild(kfEl);
 			}

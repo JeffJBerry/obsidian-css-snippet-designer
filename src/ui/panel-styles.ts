@@ -15,7 +15,7 @@ import { EMBEDDED_FONT_CSS } from './embedded-fonts';
  */
 export function ensureEmbeddedFonts(doc: Document): void {
 	if (doc.getElementById('css-designer-embedded-fonts')) return;
-	const fontEl = doc.createElement('style');
+	const fontEl = createEl('style');
 	fontEl.id = 'css-designer-embedded-fonts';
 	fontEl.textContent = EMBEDDED_FONT_CSS;
 	doc.head.appendChild(fontEl);
@@ -26,7 +26,7 @@ export function ensureStylesInDocument(doc: Document): void {
 
 	let styleEl = doc.getElementById('css-designer-ui-styles') as HTMLStyleElement | null;
 	if (!styleEl) {
-		styleEl = doc.createElement('style');
+		styleEl = createEl('style');
 		styleEl.id = 'css-designer-ui-styles';
 		doc.head.appendChild(styleEl);
 	}

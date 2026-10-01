@@ -20,7 +20,8 @@ export function getElectronWindow(doc?: Document): ElectronWindow | null {
 		}
 
 		// 2. Via @electron/remote
-		const req = targetAny.require ?? (typeof require !== 'undefined' ? require : null);
+		const nodeRequire = typeof require !== 'undefined' ? (require as (mod: string) => unknown) : null;
+		const req = targetAny.require ?? nodeRequire;
 		if (req) {
 			try {
 				const remote = req('@electron/remote') as { getCurrentWindow?: () => ElectronWindow } | undefined;
@@ -378,7 +379,7 @@ export function applyDesktopTranslucency(
 			const styleId = 'css-snippet-designer-translucency-fix';
 			let styleEl = doc.getElementById(styleId) as HTMLStyleElement | null;
 			if (!styleEl) {
-				styleEl = doc.createElement('style');
+				styleEl = createEl('style');
 				styleEl.id = styleId;
 				doc.head?.appendChild(styleEl);
 			}

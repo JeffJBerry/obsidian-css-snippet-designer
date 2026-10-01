@@ -1,4 +1,4 @@
-import { App, PluginSettingTab, Setting } from 'obsidian';
+import { App, PluginSettingTab, Setting, requireApiVersion, type SettingDefinitionItem } from 'obsidian';
 import type CssSnippetDesignerPlugin from './main';
 import { DesignerTabId, TAB_DEFINITIONS } from './schema';
 import { DEFAULT_SNIPPET_NAME } from './constants';
@@ -64,7 +64,12 @@ export class CssDesignerSettingTab extends PluginSettingTab {
 		this.plugin = plugin;
 	}
 
+	/** Fallback render for Obsidian versions before the declarative settings API. */
 	display(): void {
+		this.renderLegacySettings();
+	}
+
+	private renderLegacySettings(): void {
 		const { containerEl } = this;
 		containerEl.empty();
 		containerEl.addClass('css-designer-settings-tab');
@@ -163,14 +168,127 @@ export class CssDesignerSettingTab extends PluginSettingTab {
 				btn
 					.setButtonText('Reset tabs to default')
 					.onClick(async () => {
-						this.plugin.settings.visibleTabs = { ...DEFAULT_SETTINGS.visibleTabs };
-						this.plugin.settings.showTabIcons = DEFAULT_SETTINGS.showTabIcons;
-						this.plugin.settings.compactTabs = DEFAULT_SETTINGS.compactTabs;
-						this.plugin.settings.desktopTranslucency = DEFAULT_SETTINGS.desktopTranslucency;
-						this.plugin.settings.desktopMaterial = DEFAULT_SETTINGS.desktopMaterial;
+						this.resetTabsToDefaults();
 						await this.plugin.saveSettings();
-						this.display();
+						this.renderLegacySettings();
 					})
 			);
+	}
+
+	private resetTabsToDefaults(): void {
+		this.plugin.settings.visibleTabs = { ...DEFAULT_SETTINGS.visibleTabs };
+		this.plugin.settings.showTabIcons = DEFAULT_SETTINGS.showTabIcons;
+		this.plugin.settings.compactTabs = DEFAULT_SETTINGS.compactTabs;
+		this.plugin.settings.desktopTranslucency = DEFAULT_SETTINGS.desktopTranslucency;
+		this.plugin.settings.desktopMaterial = DEFAULT_SETTINGS.desktopMaterial;
+	}
+
+	private hasOtherVisibleTab(id: DesignerTabId): boolean {
+		return Object.entries(this.plugin.settings.visibleTabs).some(
+			([tabId, visible]) => tabId !== id && visible,
+		);
+	}
+
+	/**
+	 * Declarative settings (Obsidian 1.13+) so these appear in settings search.
+	 * `display()` remains for older versions, which don't call this.
+	 */
+	override getSettingDefinitions(): SettingDefinitionItem[] {
+		return [
+			{
+				type: 'group',
+				heading: 'Menu navigation display',
+				items: [
+					{
+						name: 'Show tab icons',
+						desc: 'Display icon glyphs alongside tab titles in the menu navigation bar',
+						control: { type: 'toggle', key: 'showTabIcons' },
+					},
+					{
+						name: 'Compact navigation tabs',
+						desc: 'Reduce horizontal padding on navigation tabs for a tighter layout',
+						control: { type: 'toggle', key: 'compactTabs' },
+					},
+				],
+			},
+			{
+				type: 'group',
+				heading: 'Configurable navigation tabs',
+				items: TAB_DEFINITIONS.map((tab) => ({
+					name: tab.label,
+					desc: tab.description,
+					control: {
+						type: 'toggle' as const,
+						key: `visibleTabs.${tab.id}`,
+						validate: (value: boolean): string | void => {
+							if (value === false && !this.hasOtherVisibleTab(tab.id)) {
+								return 'At least one navigation tab must remain visible';
+							}
+							return;
+						},
+					},
+				})),
+			},
+			{
+				type: 'group',
+				heading: 'Desktop translucency (Windows / macOS)',
+				items: [
+					{
+						name: 'Enable native window translucency',
+						desc: 'Applies native Windows 11/10 acrylic or mica effect to the Obsidian window',
+						control: { type: 'toggle', key: 'desktopTranslucency' },
+					},
+					{
+						name: 'Windows translucency material',
+						desc: 'Choose background material applied to the window on Windows',
+						control: {
+							type: 'dropdown',
+							key: 'desktopMaterial',
+							options: {
+								acrylic: 'Acrylic (frosted glass blur)',
+								mica: 'Mica (dynamic system tint)',
+								tabbed: 'Mica alt / tabbed',
+							},
+						},
+					},
+					{
+						name: 'Reset navigation tabs',
+						desc: 'Restore all menu navigation tabs to their default visible states',
+						action: () => {
+							this.resetTabsToDefaults();
+							void this.plugin.saveSettings();
+							if (requireApiVersion('1.13.0')) {
+								this.update();
+							}
+						},
+					},
+				],
+			},
+		];
+	}
+
+	override getControlValue(key: string): unknown {
+		if (key.startsWith('visibleTabs.')) {
+			const id = key.slice('visibleTabs.'.length) as DesignerTabId;
+			return this.plugin.settings.visibleTabs[id];
+		}
+		return (this.plugin.settings as unknown as Record<string, unknown>)[key];
+	}
+
+	override async setControlValue(key: string, value: unknown): Promise<void> {
+		if (key.startsWith('visibleTabs.')) {
+			const id = key.slice('visibleTabs.'.length) as DesignerTabId;
+			this.plugin.settings.visibleTabs[id] = value === true;
+		} else if (key === 'desktopTranslucency') {
+			this.plugin.settings.desktopTranslucency = value === true;
+		} else if (key === 'desktopMaterial') {
+			this.plugin.settings.desktopMaterial = value as 'acrylic' | 'mica' | 'tabbed';
+		} else {
+			(this.plugin.settings as unknown as Record<string, unknown>)[key] = value;
+		}
+		await this.plugin.saveSettings();
+		if (key === 'desktopTranslucency' || key === 'desktopMaterial') {
+			void this.plugin.applyTranslucency();
+		}
 	}
 }

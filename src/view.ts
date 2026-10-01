@@ -2319,7 +2319,7 @@ export class CssDesignerPopoutView extends ItemView {
 		for (const doc of targetDocs) {
 			let varsEl = doc.getElementById(LIVE_VARS_STYLE_ID) as HTMLStyleElement | null;
 			if (!varsEl) {
-				varsEl = doc.createElement('style');
+				varsEl = createEl('style');
 				varsEl.id = LIVE_VARS_STYLE_ID;
 				doc.head.appendChild(varsEl);
 			}
@@ -2339,7 +2339,7 @@ export class CssDesignerPopoutView extends ItemView {
 			for (const doc of targetDocs) {
 				let compEl = doc.getElementById(LIVE_COMPANION_STYLE_ID) as HTMLStyleElement | null;
 				if (!compEl) {
-					compEl = doc.createElement('style');
+					compEl = createEl('style');
 					compEl.id = LIVE_COMPANION_STYLE_ID;
 					doc.head.appendChild(compEl);
 				}

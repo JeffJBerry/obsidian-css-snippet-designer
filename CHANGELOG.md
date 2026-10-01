@@ -11,6 +11,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `THIRD-PARTY-NOTICES.md` listing the embedded preview fonts and reproducing their licenses (OFL-1.1, Apache-2.0, UFL-1.0).
 
+### Changed
+
+- Settings now also expose Obsidian's declarative settings API (1.13+), so they appear in settings search; the legacy tab is retained for older versions.
+- Replaced native `document.createElement('style')` with Obsidian's `createEl`, and explicitly typed the Electron `require` lookup, clearing the remaining review warnings.
+
 ### Fixed
 
 - Live-preview and preset-swatch styling now uses CSS classes and custom properties instead of inline styles, clearing the `obsidianmd/no-static-styles-assignment` findings from the community plugin review.
