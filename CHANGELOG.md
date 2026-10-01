@@ -11,13 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Settings now appear in Obsidian's settings search on 1.13 and newer.
 
-### Changed
-
-- Bundled preview fonts and their licenses are documented in `THIRD-PARTY-NOTICES.md`.
-
 ### Fixed
 
-- Addressed issues raised in the community plugin review.
+- Addressed issues raised by Obsidian's automated checks.
 
 ## [1.0.0] - 2026-09-30
 
