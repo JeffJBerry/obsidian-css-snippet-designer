@@ -47,6 +47,26 @@ export function ensureStylesInDocument(doc: Document): void {
     z-index: 1 !important;
 }
 
+/* Dynamic live-preview values are passed as custom properties and consumed
+   here, so the preview widgets set no styles directly. */
+.css-preview-dynamic-text {
+    text-shadow: var(--cssd-text-shadow, none);
+    -webkit-text-stroke: var(--cssd-text-stroke, unset);
+    animation: var(--cssd-animation, none);
+    transition: none;
+}
+.css-preview-dynamic-box {
+    box-shadow: var(--cssd-box-shadow, none);
+    outline: var(--cssd-outline, none);
+    outline-offset: var(--cssd-outline-offset, 0);
+    animation: var(--cssd-animation, none);
+    transition: none;
+}
+.css-preview-leaf-positioned {
+    position: relative;
+    z-index: 2;
+}
+
 .css-designer-container {
     display: flex;
     flex-direction: column;
@@ -3264,6 +3284,32 @@ code ::spelling-error {
 .css-designer-container .css-preset-edit-btn:hover {
     color: var(--text-accent, #7c3aed);
     background-color: rgba(var(--color-accent-rgb, 124, 58, 237), 0.15);
+}
+.css-designer-container .css-preset-preview {
+    display: flex;
+    height: 4px;
+    width: 100%;
+    overflow: hidden;
+}
+.css-designer-container .css-preset-preview-swatch {
+    flex: 1 1 0;
+    min-width: 0;
+    background-color: var(--cssd-swatch-color, transparent);
+}
+.css-designer-container .css-preset-swatch-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    min-width: 0;
+}
+.css-designer-container .css-preset-swatch {
+    width: 18px;
+    height: 18px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    border: 1px solid var(--background-modifier-border);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    background-color: var(--cssd-swatch-color, transparent);
 }
 .css-designer-container .css-preset-restore-btn {
     font-size: var(--font-ui-smaller, 12px);

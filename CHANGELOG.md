@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - `THIRD-PARTY-NOTICES.md` listing the embedded preview fonts and reproducing their licenses (OFL-1.1, Apache-2.0, UFL-1.0).
 
+### Fixed
+
+- Live-preview and preset-swatch styling now uses CSS classes and custom properties instead of inline styles, clearing the `obsidianmd/no-static-styles-assignment` findings from the community plugin review.
+
 ## [1.0.0] - 2026-09-30
 
 ### Added

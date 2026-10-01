@@ -289,47 +289,28 @@ function renderCuratedPresetCard(
 }
 
 /**
- * A slim colour strip across the card's top edge. The footer circles carry the
+ * A slim color strip across the card's top edge. The footer circles carry the
  * palette detail, so this is just a sleek accent line rather than a full band.
- * Every dimension is inline, so it contributes no stylesheet rules.
  */
 function renderPalette(card: HTMLElement, colors: string[]): void {
 	if (!colors || colors.length === 0) return;
 	const palette = card.createDiv({ cls: 'css-preset-preview' });
-	palette.style.display = 'flex';
-	palette.style.height = '4px';
-	palette.style.width = '100%';
-	palette.style.overflow = 'hidden';
 	for (const color of colors) {
 		const segment = palette.createDiv({ cls: 'css-preset-preview-swatch' });
-		segment.style.backgroundColor = color;
-		segment.style.flex = '1 1 0';
-		segment.style.minWidth = '0';
+		segment.setCssProps({ '--cssd-swatch-color': color });
 		segment.title = color;
 	}
 }
 
 /**
- * A compact row of colour circles, used in the card footer beside Apply. Like
- * {@link renderPalette}, every dimension is inline so no stylesheet rules are
- * needed.
+ * A compact row of color circles, used in the card footer beside Apply.
  */
 function renderSwatchRow(footer: HTMLElement, colors: string[]): void {
 	if (!colors || colors.length === 0) return;
 	const row = footer.createDiv({ cls: 'css-preset-swatch-row' });
-	row.style.display = 'flex';
-	row.style.alignItems = 'center';
-	row.style.gap = '6px';
-	row.style.minWidth = '0';
 	for (const color of colors) {
 		const dot = row.createDiv({ cls: 'css-preset-swatch' });
-		dot.style.backgroundColor = color;
-		dot.style.width = '18px';
-		dot.style.height = '18px';
-		dot.style.flexShrink = '0';
-		dot.style.borderRadius = '50%';
-		dot.style.border = '1px solid var(--background-modifier-border)';
-		dot.style.boxShadow = '0 1px 3px rgba(0, 0, 0, 0.2)';
+		dot.setCssProps({ '--cssd-swatch-color': color });
 		dot.title = color;
 	}
 }

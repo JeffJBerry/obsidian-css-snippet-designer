@@ -53,9 +53,7 @@ export function applyProspectiveFontStyles(selectEl: HTMLSelectElement): void {
 			continue;
 		}
 		const family = previewFontFamily(val);
-		if (typeof opt.setCssProps === 'function') {
-			opt.setCssProps({ ['font-family']: family });
-		} else if (opt.style && typeof opt.style.setProperty === 'function') {
+		if (opt.style && typeof opt.style.setProperty === 'function') {
 			opt.style.setProperty('font-family', family);
 		} else if (opt.style) {
 			opt.style.fontFamily = family;
@@ -108,12 +106,12 @@ export function attachProspectiveFontStyler(selectEl: HTMLSelectElement): void {
 export function updateSelectFontFamily(selectEl: HTMLSelectElement, val: string): void {
 	const isInherit = !val || val === 'inherit';
 	const family = isInherit ? '' : previewFontFamily(val);
-	if (typeof selectEl.setCssProps === 'function') {
-		selectEl.setCssProps({ ['font-family']: family });
-	} else if (isInherit) {
+	if (isInherit) {
 		selectEl.style?.removeProperty?.('font-family');
-	} else {
-		selectEl.style?.setProperty?.('font-family', family);
+	} else if (selectEl.style && typeof selectEl.style.setProperty === 'function') {
+		selectEl.style.setProperty('font-family', family);
+	} else if (selectEl.style) {
+		selectEl.style.fontFamily = family;
 	}
 }
 
@@ -518,7 +516,7 @@ export function renderDiscreteNavSpectrum(discreteStrip: HTMLElement, view: CssD
 		const pct = Math.min(100, Math.round(((i - 1) / Math.max(1, stepCount - 1)) * 100));
 		const col = view.getNavBoxGradientColorAt(pct);
 		const step = discreteStrip.createDiv({ cls: 'css-nav-discrete-step' });
-		step.setCssProps({ ['background-color']: col });
+		step.style.backgroundColor = col;
 		step.setText(`${i}`);
 		step.setAttribute('title', `Item ${i}: ${col} (${pct}%)`);
 	}
@@ -536,7 +534,7 @@ export function renderDiscreteHeadingSpectrum(discreteStrip: HTMLElement, view: 
 		const pct = Math.round(((i - 1) / 5) * 100);
 		const col = view.getHeaderGradientColorAt(pct);
 		const step = discreteStrip.createDiv({ cls: 'css-nav-discrete-step css-heading-discrete-step' });
-		step.setCssProps({ ['background-color']: col });
+		step.style.backgroundColor = col;
 		step.setText(`H${i}`);
 		step.setAttribute('title', `H${i} Heading: ${col} (${pct}%)`);
 	}
@@ -581,57 +579,24 @@ export function updateShadowPreview(view: CssDesignerPopoutView, preview: HTMLEl
 	}
 
 	const applyToElement = (target: HTMLElement, isText: boolean) => {
-		if (hasAnim && animBlock) {
-			// Animated properties must NOT have !important so CSS keyframes can interpolate them freely
-			if (isText) {
-				target.setCssProps({ ['text-shadow']: shadow });
-				target.style.textShadow = shadow;
-				if (isOutlineOn && outlineWidth !== '0px') {
-					target.setCssProps({ ['-webkit-text-stroke']: `${outlineWidth} ${outlineColor}` });
-				} else {
-					target.style.removeProperty('-webkit-text-stroke');
-				}
-			} else {
-				target.setCssProps({ ['box-shadow']: shadow });
-				target.style.boxShadow = shadow;
-				if (isOutlineOn && outlineWidth !== '0px') {
-					target.setCssProps({ ['outline']: `${outlineWidth} solid ${outlineColor}` });
-					target.setCssProps({ ['outline-offset']: '-1px' });
-				} else {
-					target.setCssProps({ ['outline']: 'none' });
-					target.style.removeProperty('outline-offset');
-				}
-			}
-			const timing = animBlock.timingFunction ?? 'ease-in-out';
-			target.setCssProps({ ['transition']: 'none' });
-			target.setCssProps({ ['animation']: `${animName} ${animSpeed} ${timing} infinite` });
-			target.style.animation = `${animName} ${animSpeed} ${timing} infinite`;
+		// Animated properties must NOT have !important so CSS keyframes can
+		// interpolate them freely. Values are passed as custom properties and the
+		// matching class consumes them, so no styles are set directly here.
+		target.addClass(isText ? 'css-preview-dynamic-text' : 'css-preview-dynamic-box');
+		const timing = animBlock?.timingFunction ?? 'ease-in-out';
+		const vars: Record<string, string> = {
+			'--cssd-animation': hasAnim && animBlock ? `${animName} ${animSpeed} ${timing} infinite` : 'none',
+		};
+		const outlined = isOutlineOn && outlineWidth !== '0px';
+		if (isText) {
+			vars['--cssd-text-shadow'] = shadow;
+			vars['--cssd-text-stroke'] = outlined ? `${outlineWidth} ${outlineColor}` : 'unset';
 		} else {
-			target.setCssProps({ ['animation']: 'none' });
-			target.style.animation = 'none';
-			target.style.removeProperty('transform');
-			target.style.removeProperty('filter');
-			target.style.removeProperty('transition');
-			if (isText) {
-				target.setCssProps({ ['text-shadow']: shadow });
-				target.style.textShadow = shadow;
-				if (isOutlineOn && outlineWidth !== '0px') {
-					target.setCssProps({ ['-webkit-text-stroke']: `${outlineWidth} ${outlineColor}` });
-				} else {
-					target.style.removeProperty('-webkit-text-stroke');
-				}
-			} else {
-				target.setCssProps({ ['box-shadow']: shadow });
-				target.style.boxShadow = shadow;
-				if (isOutlineOn && outlineWidth !== '0px') {
-					target.setCssProps({ ['outline']: `${outlineWidth} solid ${outlineColor}` });
-					target.setCssProps({ ['outline-offset']: '-1px' });
-				} else {
-					target.setCssProps({ ['outline']: 'none' });
-					target.style.removeProperty('outline-offset');
-				}
-			}
+			vars['--cssd-box-shadow'] = shadow;
+			vars['--cssd-outline'] = outlined ? `${outlineWidth} solid ${outlineColor}` : 'none';
+			vars['--cssd-outline-offset'] = outlined ? '-1px' : '0';
 		}
+		target.setCssProps(vars);
 	};
 
 	const target = SHADOW_PREVIEW_TARGETS[el.id];
@@ -645,8 +610,7 @@ export function updateShadowPreview(view: CssDesignerPopoutView, preview: HTMLEl
 		preview.querySelectorAll<HTMLElement>('.obsidian-preview-codeblock').forEach((c) => c.addClass('css-preview-unclipped', 'css-preview-unclipped-low'));
 	} else if (el.id === 'active-leaf') {
 		preview.querySelectorAll<HTMLElement>('.obsidian-preview-leaf').forEach((l) => {
-			l.setCssProps({ ['position']: 'relative' });
-			l.setCssProps({ ['z-index']: '2' });
+			l.addClass('css-preview-leaf-positioned');
 		});
 	}
 }
