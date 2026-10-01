@@ -82,7 +82,7 @@
 /* Code Pane & Resizer */
 .css-designer-code-resizer.is-hidden,
 .css-designer-code-pane.is-hidden {
-    display: none !important;
+    display: none;
 }
 
 body.is-resizing-code-pane,
@@ -715,28 +715,28 @@ body.is-resizing-code-pane * {
 
 @container (max-width: 620px) {
     .css-designer-container .css-designer-tabs {
-        display: none !important;
+        display: none;
     }
     .css-designer-container .css-designer-tab-dropdown-container {
-        display: flex !important;
+        display: flex;
     }
 }
 
 @media (max-width: 620px) {
     .css-designer-container .css-designer-tabs {
-        display: none !important;
+        display: none;
     }
     .css-designer-container .css-designer-tab-dropdown-container {
-        display: flex !important;
+        display: flex;
     }
 }
 
 .css-designer-container.is-compressed .css-designer-tabs {
-    display: none !important;
+    display: none;
 }
 
 .css-designer-container.is-compressed .css-designer-tab-dropdown-container {
-    display: flex !important;
+    display: flex;
 }
 
 /* Tab Configuration Modal */
@@ -1890,9 +1890,9 @@ body.is-resizing-code-pane * {
 
 .css-designer-container .css-ui-element-card:hover,
 .css-designer-container .css-ui-element-card:focus-within {
-    border-color: var(--text-accent) !important;
-    outline: 1px solid var(--text-accent) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent) !important;
+    border-color: var(--text-accent);
+    outline: 1px solid var(--text-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent);
 }
 
 .css-designer-container .css-ui-element-card.is-zero-opacity {
@@ -1902,9 +1902,9 @@ body.is-resizing-code-pane * {
 
 .css-designer-container .css-ui-element-card.is-zero-opacity:hover,
 .css-designer-container .css-ui-element-card.is-zero-opacity:focus-within {
-    border-color: var(--text-accent) !important;
-    outline: 1px solid var(--text-accent) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent) !important;
+    border-color: var(--text-accent);
+    outline: 1px solid var(--text-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent);
 }
 
 .css-designer-container .css-ui-card-top {
@@ -1986,8 +1986,8 @@ body.is-resizing-code-pane * {
 }
 
 .css-designer-container .css-ui-btn-tiny:hover {
-    color: var(--text-normal) !important;
-    border-color: var(--text-accent) !important;
+    color: var(--text-normal);
+    border-color: var(--text-accent);
 }
 
 .css-designer-container .css-ui-card-bottom {
@@ -3244,9 +3244,9 @@ code ::spelling-error {
     transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, transform 0.15s ease, filter 0.15s ease, font-weight 0.15s ease;
 }
 .css-designer-container .css-ui-preset-pill:hover {
-    background-color: var(--text-accent) !important;
-    color: var(--text-on-accent, #ffffff) !important;
-    border-color: var(--text-accent) !important;
+    background-color: var(--text-accent);
+    color: var(--text-on-accent, #ffffff);
+    border-color: var(--text-accent);
     transform: translateY(-1px);
 }
 .css-designer-container .css-ui-global-row {
@@ -3378,9 +3378,9 @@ code ::spelling-error {
 }
 .css-designer-container .css-ui-element-card:hover,
 .css-designer-container .css-ui-element-card:focus-within {
-    border-color: var(--text-accent) !important;
-    outline: 1px solid var(--text-accent) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent) !important;
+    border-color: var(--text-accent);
+    outline: 1px solid var(--text-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent);
 }
 .css-designer-container .css-ui-element-card.is-zero-opacity {
     border-color: rgba(239, 68, 68, 0.35);
@@ -3388,9 +3388,9 @@ code ::spelling-error {
 }
 .css-designer-container .css-ui-element-card.is-zero-opacity:hover,
 .css-designer-container .css-ui-element-card.is-zero-opacity:focus-within {
-    border-color: var(--text-accent) !important;
-    outline: 1px solid var(--text-accent) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent) !important;
+    border-color: var(--text-accent);
+    outline: 1px solid var(--text-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent);
 }
 .css-designer-container .css-ui-card-top {
     display: flex;
@@ -3447,7 +3447,7 @@ code ::spelling-error {
     color: var(--text-normal);
 }
 .css-designer-container .css-ui-card-number:focus {
-    border-color: var(--text-accent) !important;
+    border-color: var(--text-accent);
     outline: none;
 }
 
@@ -3485,8 +3485,8 @@ code ::spelling-error {
     transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease, transform 0.15s ease, filter 0.15s ease, font-weight 0.15s ease;
 }
 .css-designer-container .css-ui-btn-tiny:hover {
-    color: var(--text-normal) !important;
-    border-color: var(--text-accent) !important;
+    color: var(--text-normal);
+    border-color: var(--text-accent);
     background-color: var(--background-modifier-hover);
 }
 .css-designer-container .css-ui-card-bottom {
@@ -3538,9 +3538,9 @@ code ::spelling-error {
 
 .css-designer-container .css-ui-element-card.css-ui-layout-card:hover,
 .css-designer-container .css-ui-element-card.css-ui-layout-card:focus-within {
-    border-color: var(--text-accent) !important;
-    outline: 1px solid var(--text-accent) !important;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent) !important;
+    border-color: var(--text-accent);
+    outline: 1px solid var(--text-accent);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08), 0 0 0 1px var(--text-accent);
 }
 
 .css-designer-container .css-ui-element-card.css-ui-layout-card.is-active {
@@ -3558,7 +3558,7 @@ code ::spelling-error {
 }
 
 .css-designer-container .css-ui-layout-slider-wrap.is-hidden {
-    display: none !important;
+    display: none;
 }
 
 .css-designer-container .css-ui-layout-slider-label {
@@ -3601,17 +3601,17 @@ code ::spelling-error {
     font-weight: 500;
     padding: 5px 14px;
     white-space: nowrap;
-    background-color: var(--text-accent) !important;
-    color: var(--text-on-accent, #ffffff) !important;
-    border: 1px solid var(--text-accent) !important;
+    background-color: var(--text-accent);
+    color: var(--text-on-accent, #ffffff);
+    border: 1px solid var(--text-accent);
     border-radius: var(--radius-s, 4px);
     cursor: pointer;
     box-shadow: var(--input-shadow, 0 1px 2px rgba(0, 0, 0, 0.1));
     transition: opacity 0.15s ease, filter 0.15s ease, background-color 0.15s ease, border-color 0.15s ease;
 }
 .css-designer-container .css-save-preset-btn:hover {
-    background-color: var(--interactive-accent-hover, var(--text-accent)) !important;
-    border-color: var(--interactive-accent-hover, var(--text-accent)) !important;
+    background-color: var(--interactive-accent-hover, var(--text-accent));
+    border-color: var(--interactive-accent-hover, var(--text-accent));
     filter: brightness(1.12);
     opacity: 0.95;
 }

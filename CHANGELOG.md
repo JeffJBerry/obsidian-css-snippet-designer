@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Settings now also expose Obsidian's declarative settings API (1.13+), so they appear in settings search; the legacy tab is retained for older versions.
 - Replaced native `document.createElement('style')` with Obsidian's `createEl`, and explicitly typed the Electron `require` lookup, clearing the remaining review warnings.
+- Reduced `!important` in `styles.css`: removed it where the plugin's own scoped selectors already win, keeping it only for Obsidian component/theme overrides and the spellcheck/grammar block.
 
 ### Fixed
 
