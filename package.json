@@ -1,6 +1,6 @@
 {
   "name": "css-snippet-designer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Design CSS snippets visually for Obsidian: typography, colors, shadows and UI elements.",
   "main": "main.js",
   "type": "module",
