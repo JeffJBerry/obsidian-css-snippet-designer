@@ -3294,7 +3294,6 @@ code ::spelling-error {
 .css-designer-container .css-preset-preview-swatch {
     flex: 1 1 0;
     min-width: 0;
-    background-color: var(--cssd-swatch-color, transparent);
 }
 .css-designer-container .css-preset-swatch-row {
     display: flex;
@@ -3309,7 +3308,6 @@ code ::spelling-error {
     border-radius: 50%;
     border: 1px solid var(--background-modifier-border);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    background-color: var(--cssd-swatch-color, transparent);
 }
 .css-designer-container .css-preset-restore-btn {
     font-size: var(--font-ui-smaller, 12px);

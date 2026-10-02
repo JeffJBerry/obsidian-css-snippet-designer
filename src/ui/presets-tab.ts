@@ -297,7 +297,7 @@ function renderPalette(card: HTMLElement, colors: string[]): void {
 	const palette = card.createDiv({ cls: 'css-preset-preview' });
 	for (const color of colors) {
 		const segment = palette.createDiv({ cls: 'css-preset-preview-swatch' });
-		segment.setCssProps({ '--cssd-swatch-color': color });
+		segment.style.backgroundColor = color;
 		segment.title = color;
 	}
 }
@@ -310,7 +310,7 @@ function renderSwatchRow(footer: HTMLElement, colors: string[]): void {
 	const row = footer.createDiv({ cls: 'css-preset-swatch-row' });
 	for (const color of colors) {
 		const dot = row.createDiv({ cls: 'css-preset-swatch' });
-		dot.setCssProps({ '--cssd-swatch-color': color });
+		dot.style.backgroundColor = color;
 		dot.title = color;
 	}
 }

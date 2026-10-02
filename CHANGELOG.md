@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Restored the preset color palettes, which were blank because the swatch styles were only loaded in the injected panel stylesheet.
+
+### Removed
+
+- Removed the Nord Frost, Warm Dark, and Solarized Light presets.
+
+## [1.0.1] - 2026-10-01
+
 ### Added
 
 - Settings now appear in Obsidian's settings search on 1.13 and newer.
@@ -25,5 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Built-in structural CSS validation before anything is written to disk.
 - Optional desktop window translucency (Windows Mica/Acrylic, macOS vibrancy).
 
-[Unreleased]: https://github.com/JeffJBerry/obsidian-css-snippet-designer/compare/1.0.0...HEAD
+[Unreleased]: https://github.com/JeffJBerry/obsidian-css-snippet-designer/compare/1.0.1...HEAD
+[1.0.1]: https://github.com/JeffJBerry/obsidian-css-snippet-designer/releases/tag/1.0.1
 [1.0.0]: https://github.com/JeffJBerry/obsidian-css-snippet-designer/releases/tag/1.0.0
